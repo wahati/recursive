@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int recursive(int number);
-int iterate(int number);
+int recursive(int element);
+int iterate(int element);
 int check(int target);
 
 int main() {
@@ -19,29 +19,20 @@ int main() {
     return 0;
 }
 
-int recursive(int number) {
-    if (number == 0) {
-        return 0;
-    } else if (number == 1) {
+int recursive(int element) {
+    if (element == 0 || element == 1) {
         return 1;
     } else {
-        return recursive(number - 2) + recursive(number - 1);
+        return element * recursive(element - 1);
     }
 }
 
-int iterate(int number) {
-    // if (number == 0 || number == 1) {
-    //     return 1;
-    // } else {
-        int first = 1;
-        int second = 1;
-        for (int i = 1; i < number; i++) {
-            int temp = first;
-            first = second;
-            second = temp + second;
-        }
-        return second;
-    // }
+int iterate(int element) {
+    int permutation = 1;
+    for (int i = 1; i <= element; i++) {
+        permutation *= i;
+    }
+    return permutation;
 }
 
 int check(int target) {
